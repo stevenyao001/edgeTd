@@ -24,7 +24,7 @@ var (
 )
 
 func init() {
-	dataChan = make(chan *mqtt.Msg, 10)
+	dataChan = make(chan *mqtt.Msg, 1000)
 	conf = new(config.Config)
 	config.InitConf("./conf/local.yaml", conf)
 }
@@ -118,7 +118,7 @@ func mqttConnect() {
 	opt := mqtt.SubscribeOpts{
 		//Topic: "topic/test",
 		Topic:    "$ROOTEDGE/thing/realtimedata/123456",
-		Qos:      0,
+		Qos:      2,
 		Callback: messagePubHandler,
 	}
 	opts := make([]mqtt.SubscribeOpts, 0)
