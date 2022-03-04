@@ -1,0 +1,24 @@
+app:
+  app_id: "dfdsfds"
+  app_secret: "weeqqq"
+  env: "local"
+
+log:
+  main_path: "./logs/rootcloud_edge.log"
+
+mqtt:
+  - ins_name: "rootcloud"
+    addr: "192.168.56.5"
+    port: "1883"
+    username: "admin"
+    password: "public"
+    client_id: "rootcloud_edge01"
+
+tdengine:
+  - ins_name: "rootcloud"
+    fqdn: "vagrant01"
+    port: "6030"
+    restful_port: "6041"
+    username: "root"
+    password: "123456"
+    db_name: "test"
