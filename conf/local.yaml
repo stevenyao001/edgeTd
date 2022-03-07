@@ -16,7 +16,7 @@ mqtt:
 
 tdengine:
   - ins_name: "rootcloud"
-    fqdn: "vagrant01"
+    fqdn: "192.168.56.5"
     port: "6030"
     restful_port: "6041"
     username: "root"

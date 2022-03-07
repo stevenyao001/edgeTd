@@ -75,7 +75,7 @@ func tdEngine() {
 			InsName:      value.InsName,
 			Driver:       "taosRestful",
 			Network:      "http",
-			Addr:         "192.168.56.5",
+			Addr:         value.Fqdn,
 			Port:         0,
 			Username:     value.Username,
 			Password:     value.Password,
@@ -117,7 +117,7 @@ func tdEngine() {
 func mqttConnect() {
 	opt := mqtt.SubscribeOpts{
 		//Topic: "topic/test",
-		Topic:    "$ROOTEDGE/thing/realtimedata/123456",
+		Topic:    "$ROOTEDGE/thing/realtimedata/+",
 		Qos:      2,
 		Callback: messagePubHandler,
 	}
