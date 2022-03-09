@@ -16,9 +16,9 @@ type UserTd struct {
 
 type UserTdGK struct {
 	*tdengine.TdEngine
-	Num       int `json:"num"`
-	Status    int `json:"status"`
-	InstantEp int `json:"instant_ep"`
+	Num          int  `json:"num"`
+	Status       int  `json:"status"`
+	InstantEp    int  `json:"instant_ep"`
 	MegnetStatus bool `json:"megnet_status"`
 	Ia           int  `json:"ia"`
 	Ep           int  `json:"ep"`
@@ -117,7 +117,7 @@ func (u *UserTd) Find() error {
 
 	for rowsGK.Next() {
 		tmp := UserTdGK{}
-		err = rowsGK.Scan(&tmp.InstantEp, &tmp.Num, &tmp.Status,&tmp.Ep, &tmp.Ia, &tmp.MegnetStatus)
+		err = rowsGK.Scan(&tmp.InstantEp, &tmp.Num, &tmp.Status, &tmp.Ep, &tmp.Ia, &tmp.MegnetStatus)
 		if err != nil {
 			logger.ErrorLog("UserTde-Find", "执行sql报错", "", err)
 			return err
@@ -138,7 +138,7 @@ func (u *UserTd) Insert(data *Input) error {
 	}
 
 	tsGK := time.Now().UnixMilli()
-	sqlsGK := fmt.Sprintf("insert into megnet_gk_001 (ts, megnet_id, instant_ep, num, status, ep, ia, megnet_status) values (%d, %d, %d, %d, %d, %d, %d, %t)", tsGK, ts, data.Properties.InstantEp, data.Properties.Num, data.Properties.Status, data.Properties.Ep, data.Properties.Ia, data.Properties.MegnetStatus)
+	sqlsGK := fmt.Sprintf("INSERT INTO megnet_gk_001 USING megnet_gk TAGS ('类型1')(ts, megnet_id, instant_ep, num, status, ep, ia, megnet_status) values (%d, %d, %d, %d, %d, %d, %d, %t)", tsGK, ts, data.Properties.InstantEp, data.Properties.Num, data.Properties.Status, data.Properties.Ep, data.Properties.Ia, data.Properties.MegnetStatus)
 	_, err = u.Db.Exec(sqlsGK)
 	if err != nil {
 		logger.ErrorLog("UserTde-Insert", "执行sql报错", "", err)
