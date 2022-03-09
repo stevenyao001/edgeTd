@@ -92,10 +92,7 @@ func tdEngine() {
 
 	go func() {
 		for {
-			err := userTd.Find()
-			if err != nil {
-				return
-			}
+			_ = userTd.Find()
 			time.Sleep(10 * time.Second)
 		}
 	}()
@@ -144,5 +141,6 @@ func messagePubHandler(client mqttG.Client, msg mqttG.Message) {
 	//fmt.Printf("Received message: %s from topic: %s\n", msg.Payload(), msg.Topic())
 	tmp := &mqtt.Msg{}
 	json.Unmarshal(msg.Payload(), tmp)
+	fmt.Println("-----------")
 	dataChan <- tmp
 }
